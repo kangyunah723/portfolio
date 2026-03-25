@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KANG YUNAH | UX Research Portfolio</title>
+
+  <!-- Pretendard (optional) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #111;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --card: #ffffff;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .08);
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, .06);
+      --primary: #2563eb;
+      --primary-weak: #dbeafe;
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --container: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* layout */
+    .container {
+      width: min(var(--container), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin: 0 0 26px;
+      gap: 20px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: -.02em;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* top nav */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, .85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229, 231, 235, .6);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-size: 14px;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 26px;
+      padding: 0;
+      margin: 0;
+      align-items: center;
+      color: #111;
+      font-size: 14px;
+    }
+
+    .nav a {
+      color: #111;
+      opacity: .75;
+    }
+
+    .nav a:hover {
+      opacity: 1;
+    }
+
+    .nav a.active {
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    /* hero */
+    .hero {
+      padding: 56px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .9fr;
+      gap: 56px;
+      align-items: center;
+      min-height: 520px;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: 44px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      white-space: pre-line;
+    }
+
+    .hero .sub {
+      margin: 0 0 22px;
+      color: var(--muted);
+      max-width: 520px;
+      font-size: 15px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .btn {
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .04);
+      transition: .15s transform ease, .15s box-shadow ease, .15s background ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, .07);
+    }
+
+    .btn.primary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .btn.ghost {
+      background: #fff;
+      border-color: #c7d2fe;
+      color: var(--primary);
+    }
+
+    /* profile card */
+    .profile-card {
+      background: var(--card);
+      border: 1px solid rgba(229, 231, 235, .7);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .pc-top {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #f5f3ff);
+      border: 1px solid rgba(0, 0, 0, .06);
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pc-top h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .pc-top .role {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .meta {
+      display: grid;
+      gap: 6px;
+    }
+
+    .k {
+      font-size: 11px;
+      color: #9ca3af;
+      letter-spacing: .08em;
+    }
+
+    .v {
+      font-size: 13px;
+      color: #111;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(229, 231, 235, .8);
+      margin: 12px 0;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid rgba(229, 231, 235, .8);
+      color: #111;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      color: #2563eb;
+    }
+
+    /* experience */
+    .exp {
+      background: #fbfbfc;
+      border-top: 1px solid rgba(229, 231, 235, .7);
+      border-bottom: 1px solid rgba(229, 231, 235, .7);
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .exp-left h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 24px;
+    }
+
+    .job {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 12px 0;
+    }
+
+    .year {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 13px;
+      padding-top: 2px;
+    }
+
+    .job h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .job .org {
+      margin: 0 0 10px;
+      color: #111;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .job ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      display: grid;
+      gap: 6px;
+    }
+
+    /* cards grid */
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cards-2 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(229, 231, 235, .75);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      /* ⭐ 중요 */
+      height: 100%;
+      /* ⭐ 추가 */
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .thumb {
+      height: 170px;
+      background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+      border-bottom: 1px solid rgba(229, 231, 235, .75);
+      overflow: hidden;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid rgba(229, 231, 235, .9);
+      background: #fff;
+      color: #111;
+    }
+
+    .badge.blue {
+      background: #eff6ff;
+      border-color: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .badge.gray {
+      background: #f3f4f6;
+      border-color: #e5e7eb;
+      color: #111;
+    }
+
+    .badge.dark {
+      background: #111;
+      border-color: #111;
+      color: #fff;
+    }
+
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .card-foot {
+      padding: 14px 18px 18px;
+      /* ✅ 아래/좌우 여백 늘려서 겹침 방지 */
+      display: flex;
+      justify-content: flex-end;
+      /* ✅ 우측 정렬 */
+      align-items: flex-end;
+      /* ✅ 하단 정렬 */
+      margin-top: auto;
+      /* ✅ 항상 카드 맨 아래로 */
+    }
+
+    .link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #111;
+      opacity: .85;
+    }
+
+    .link:hover {
+      opacity: 1;
+    }
+
+    .arrow {
+      font-weight: 900;
+    }
+
+    /* footer */
+    .footer {
+      background: #0b0f14;
+      color: #fff;
+      padding: 92px 0 20px;
+    }
+
+    .footer h2 {
+      margin: 0 0 10px;
+      font-size: 40px;
+      letter-spacing: -.03em;
+    }
+
+    .footer p {
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, .62);
+      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .footer .email {
+      display: inline-block;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .28);
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin-top: 14px;
+    }
+
+    .social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      display: grid;
+      place-items: center;
+      opacity: .9;
+    }
+
+    .social a:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, .25);
+    }
+
+    .copyright {
+      margin-top: 34px;
+      color: rgba(255, 255, 255, .35);
+      font-size: 12px;
+    }
+
+    /* responsive */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        min-height: auto;
+      }
+
+      .profile-card {
+        max-width: 560px;
+      }
+
+      .exp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .job {
+        grid-template-columns: 1fr;
+      }
+
+      .year {
+        padding: 0;
+      }
+
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .footer h2 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .nav ul {
+        gap: 14px;
+      }
+    }
+
+    /* ✅ Apple-style hover */
+    .card {
+      transition:
+        transform .28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow .28s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color .28s ease;
+
+      will-change: transform;
+    }
+
+    /* 카드만 올라옴 */
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .10);
+      border-color: rgba(0, 0, 0, .06);
+    }
+
+    /* 클릭 느낌 */
+    .card:active {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .08);
+    }
+
+    /* 키보드 접근성 */
+    .card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, .10);
+    }
+
+    /* ✅ Auto grid: 기본 3열, 카드 개수 늘면 자동으로 다음 줄로 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    /* 반응형: 태블릿 2열 */
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* 반응형: 모바일 1열 */
+    @media (max-width: 520px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==============================
+  Skills
+============================== */
+    .skills-wrap {
+      display: grid;
+      gap: 28px;
+    }
+
+    .skill-category {
+      display: grid;
+      gap: 14px;
+    }
+
+    .skill-category-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+ 
+    .skill-category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      border: 1px solid rgba(229, 231, 235, .9);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .skill-category-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-action {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 1px solid rgba(229, 231, 235, .9);
+      background: #fff;
+      color: #6b7280;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+    }
+
+    .skill-create {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: 1px solid #2563eb;
+      background: #2563eb;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, .18);
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: #fff;
+      border: 1px solid rgba(229, 231, 235, .8);
+      border-radius: 18px;
+      padding: 18px 16px;
+      min-height: 128px;
+      box-shadow: var(--shadow-soft);
+      transition:
+        transform .28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow .28s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color .28s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, .08);
+      border-color: rgba(0, 0, 0, .06);
+    }
+
+    .skill-card-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .skill-icon-box {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .skill-icon-figma { background: #111; }
+    .skill-icon-ai { background: #c2410c; }
+    .skill-icon-ps { background: #0f3d66; }
+    .skill-icon-sketch { background: #1f2937; }
+    .skill-icon-canva { background: #5b4ce6; }
+    .skill-icon-ppt { background: #d35400; }
+    .skill-icon-excel { background: #1d6f42; }
+    .skill-icon-lm { background: #4b5563; }
+    .skill-icon-claude { background: #dd6b4d; }
+    .skill-icon-notion { background: #111; }
+
+    .skill-name {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+    }
+
+    .skill-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    @media (max-width: 1100px) {
+      .skill-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .skill-category-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .skill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #skills {
+      background: #f7f8fa;
+      padding: 60px 0;
+      border-top: 1px solid #e5e7eb;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Top Nav -->
+  <header class="topbar">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top">KANG YUNAH</a>
+        <ul>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid" id="profile">
+        <!-- Left copy -->
+        <div>
+          <h1>데이터 기반의 연구자,
+            사용자 경험의 경계를
+            탐구합니다.
+          </h1>
+
+          <p class="sub">
+            인간·컴퓨터 상호작용(HCI)과 사용자 경험(UX) 연구를 통해<br>
+            기술이 인간의 삶에 미치는 긍정적인 영향을 증명하고 설계합니다.
+          </p>
+        </div>
+
+        <!-- Right profile card -->
+        <aside class="profile-card" aria-label="Profile Card">
+          <div class="pc-top">
+            <div class="avatar" aria-hidden="true">
+              <!-- 원하는 사진으로 교체 -->
+              <img src="images/profile-yunah.jpg" srcset="images/profile-yunah.jpg 2x" alt="profile yunah">
+            </div>
+            <div>
+              <h3>강윤아</h3>
+              <div class="role">UX Researcher</div>
+            </div>
+          </div>
+
+          <div class="pc-grid">
+            <div class="meta">
+              <div class="k">BIRTH</div>
+              <div class="v">2000. 07. 23</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="meta">
+              <div class="k">EDUCATION</div>
+              <div class="v"><b>동의대학교 일반대학원</b> 인간공학 전공 석사</div>
+              <div class="v" style="color:var(--muted); font-size:12px;">2023. 03 - 2025. 02</div>
+              <div class="v"><b>동의대학교</b> 인간시스템디자인공학과 학사</div>
+              <div class="v" style="color:var(--muted); font-size:12px;">2019. 03 - 2023. 02</div>
+              <div class="v"><b>삼일여자고등학교</b> 삼일여자고등학교</div>
+              <div class="v" style="color:var(--muted); font-size:12px;">2016. 03 - 2019. 02</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="contact-row">
+              <span class="pill">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6.5l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M4 7v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                </svg>
+                kang.yunah.723@gmail.com
+              </span>
+              <span class="pill">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M6.5 4.5l3 1.2c.7.3 1 1 .8 1.7l-1 2.3a14 14 0 0 0 5.7 5.7l2.3-1c.7-.2 1.4.1 1.7.8l1.2 3c.3.8-.1 1.7-.9 2-1.3.5-2.7.8-4 .8C10 22 2 14 2 4.7c0-1.4.3-2.8.8-4 .3-.8 1.2-1.2 2-1z"
+                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                </svg>
+                +82 10-4731-3433
+              </span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Experience -->
+  <section id="experience" class="section exp">
+    <div class="container">
+      <div class="exp-grid">
+        <div class="exp-left">
+          <h2>Experience</h2>
+        </div>
+
+        <div class="timeline">
+
+          <div class="job">
+            <div class="year">2025.07 ~</div>
+            <div>
+              <h3>Research Intern</h3>
+              <div class="org">한국리서치 (Hankook Research)</div>
+              <ul>
+                <li>여론조사 및 시장조사 데이터 클리닝 및 기초 통계 분석 지원</li>
+                <li>FGI(Focus Group Interview) 스크립트 작성 및 현장 운영 보조</li>
+                <li>정량/정성 리서치 리포트 시각화 및 인사이트 도출 보조</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job">
+            <div class="year">2023.03 ~ 2025.02</div>
+            <div>
+              <h3>석사과정</h3>
+              <div class="org">동의대학교 인간공학 연구실(uxu lab) </div>
+              <ul>
+                <li>사용자 중심 인터페이스 설계 및 사용성 테스트 수행</li>
+                <li>주요 정량 데이터 분석 방법론 적용(설문/로그 기반)</li>
+                <li>LG전자, 한국디자인 진흥원 등 다수 산학 협력 프로젝트에서 UX 리서치 역할 수행</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Participated Projects</h2>
+          <p>학/석사 기간 동안 참여한 주요 프로젝트입니다.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="projectGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Research -->
+  <section id="research" class="section" style="padding-top:36px;">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Individual Research</h2>
+          <p>개인 연구 및 학술 활동을 소개합니다.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="researchGrid"></div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Skills</h2>
+          <p>디자인, 문서 작업, 협업 및 AI 활용 역량을 소개합니다.</p>
+        </div>
+      </div>
+
+      <div class="skills-wrap">
+        <!-- GRAPHIC -->
+        <div class="skill-category">
+          <div class="skill-category-head">
+            <div class="skill-category-badge">GRAPHIC</div>
+            <div class="skill-category-actions" aria-hidden="true">
+            </div>
+          </div>
+
+          <div class="skill-grid">
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-figma">F</span>
+                <h3 class="skill-name">Figma</h3>
+              </div>
+              <p class="skill-desc">UI/UX 디자인, 프로토타입 제작, 웹사이트 디자인, 협업 프로젝트 관리</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-ai">Ai</span>
+                <h3 class="skill-name">Adobe Illustrator</h3>
+              </div>
+              <p class="skill-desc">로고 디자인, 벡터 그래픽 제작, 아이콘 디자인, 브랜드 요소 제작</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-ps">Ps</span>
+                <h3 class="skill-name">Adobe Photoshop</h3>
+              </div>
+              <p class="skill-desc">사진 편집, 이미지 리터칭, 디지털 아트워크 제작, 목업 디자인</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-sketch">◆</span>
+                <h3 class="skill-name">Sketch</h3>
+              </div>
+              <p class="skill-desc">디지털 제품 UI/UX 디자인 및 프로토타이핑</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-canva">C</span>
+                <h3 class="skill-name">Canva</h3>
+              </div>
+              <p class="skill-desc">소셜 미디어 디자인, 프레젠테이션 제작, 마케팅 자료 디자인</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- OA -->
+        <div class="skill-category">
+          <div class="skill-category-head">
+            <div class="skill-category-badge">OA</div>
+            <div class="skill-category-actions" aria-hidden="true">
+            </div>
+          </div>
+
+          <div class="skill-grid">
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-ppt">P</span>
+                <h3 class="skill-name">PowerPoint</h3>
+              </div>
+              <p class="skill-desc">프레젠테이션 디자인, 비즈니스 문서 작성, 시각적 커뮤니케이션</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-excel">X</span>
+                <h3 class="skill-name">Excel</h3>
+              </div>
+              <p class="skill-desc">데이터 필터링 및 정렬, 데이터 분석 및 시각화, 매크로 기초 활용</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-lm">LM</span>
+                <h3 class="skill-name">Notebook LM</h3>
+              </div>
+              <p class="skill-desc">AI 기반 정보 분석, 자료 요약, 인사이트 도출</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-claude">Cl</span>
+                <h3 class="skill-name">Claude</h3>
+              </div>
+              <p class="skill-desc">AI를 활용한 아이디어 발상, 콘텐츠 제작, 크리에이티브 작업 보조</p>
+            </article>
+
+            <article class="skill-card">
+              <div class="skill-card-top">
+                <span class="skill-icon-box skill-icon-notion">N</span>
+                <h3 class="skill-name">Notion</h3>
+              </div>
+              <p class="skill-desc">프로젝트 관리, 문서화, 협업 워크스페이스 구축</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <h2>Open to new opportunities.</h2>
+      <p>
+        감사합니다.<br>
+        아래 메일로 연락주시면 빠르게 회신 드리겠습니다.
+      </p>
+
+      <a class="email" href="mailto:kang.yunah.723@gmail.com">kang.yunah.723@gmail.com</a>
+
+      <div class="social" aria-label="Social Links">
+        <a href="#" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M6 9v12H3V9h3zM4.5 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5zM21 21h-3v-6.2c0-1.5-.6-2.5-2-2.5-1.1 0-1.7.7-2 1.4-.1.3-.1.7-.1 1.1V21h-3s.04-10 0-12h3v1.7c.4-.7 1.2-1.8 3-1.8 2.2 0 4.1 1.4 4.1 4.6V21z"
+              fill="rgba(255,255,255,.9)" />
+          </svg>
+        </a>
+        <a href="#" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path fill="rgba(255,255,255,.9)"
+              d="M12 .7a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.2-.8.1-.8.1-.8 1.3.1 2 .9 2 .9 1.2 2 3.1 1.4 3.9 1.1.1-.9.5-1.4.8-1.7-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.9 4 19 4.3 19 4.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.5.4.9 1.2.9 2.4v3.7c0 .4.2.7.8.6A12 12 0 0 0 12 .7z" />
+          </svg>
+        </a>
+        <a href="#" aria-label="Behance">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path fill="rgba(255,255,255,.9)"
+              d="M8.2 12.2c.9-.5 1.5-1.4 1.5-2.5 0-2-1.4-3.2-4-3.2H1v14h5c2.8 0 4.7-1.2 4.7-3.8 0-1.9-1-3-2.5-3.5zM4 8.8h2c1 0 1.6.4 1.6 1.2 0 .9-.6 1.3-1.7 1.3H4V8.8zm2.2 9.4H4v-4h2.2c1.4 0 2.2.5 2.2 1.9 0 1.5-.9 2.1-2.2 2.1zM20.4 9.5c-3.1 0-5.1 2.2-5.1 5.6 0 3.5 2.1 5.6 5.3 5.6 2.3 0 4-1.1 4.6-3.1h-2.3c-.3.8-1.1 1.3-2.2 1.3-1.6 0-2.6-1-2.6-2.6h7.3v-.6c0-3.8-2-6.2-5-6.2zm-2.2 4.6c.2-1.4 1.1-2.2 2.3-2.2 1.3 0 2.1.8 2.2 2.2h-4.5zM18 7h4V5.8h-4V7z" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="copyright">© 2026 Kang Yunah. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    /* ==============================
+      0) Research 데이터
+    ============================== */
+    const PROJECTS = {
+      airsolution: {
+        smallTitle: "DONE (UT : Usability Test)",
+        title: "에어솔루션 (LG전자)",
+        summary: "고령층 사용자를 위한 음성 인식 기반 건강 관리 앱의 설계/평가를 통해 사용성 개선안을 도출했습니다.",
+        image: "images/airsolusion_2023.jpg",
+        period: "2025.01 ~ 2025.06",
+        status: "IN PROGRESS"
+      },
+      smartcity: {
+        smallTitle: "DONE 팀프로젝트",
+        title: "스마트시티 모빌리티 대시보드",
+        summary: "도시 교통 흐름 데이터를 시각화하여 관리자들이 실시간으로 모니터링할 수 있는 관제 시스템 UI를 디자인했습니다.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&h=900&fit=crop",
+        period: "2023.05 ~ 2023.12",
+        status: "DONE"
+      },
+      financial: {
+        smallTitle: "DONE 리서치 프로젝트",
+        title: "비대면 금융 서비스 사용성 조사",
+        summary: "20~30대 금융 소비자의 비대면 서비스 이용 패턴을 분석하고 개선 과제를 도출했습니다.",
+        image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&h=900&fit=crop",
+        period: "2022.09 ~ 2023.02",
+        status: "DONE"
+      }
+    };
+
+
+    /* ==============================
+      1) Research 데이터
+    ============================== */
+    const RESEARCH = {
+      recommendation: {
+        smallTitle: "PUBLISHED 학술지 논문",
+        title: "CMF 디자인과 제품 경험 품질 개념 정의에 대한 체계적 문헌고찰",
+        summary: "CMF 디자인과 제품 경험 품질의 개념을 체계적으로 정의",
+        image: "images/CMF-Design-definition.png",
+        period: "2023.03 ~ 2023.11"
+      },
+      darkpattern: {
+        smallTitle: "PUBLISHED 학술지 포스터 연구",
+        title: "다크 패턴이 모바일 커머스 구매 결정에 미치는 영향",
+        summary: "설득 UX와 다크 패턴의 행동 영향 비교 연구",
+        image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1400&h=900&fit=crop",
+        period: "2022.03 ~ 2022.11"
+      },
+
+      newstudy: {   // 👈 새 id
+        smallTitle: "PUBLISHED 졸업 논문",
+        title: "UX Writing Framework 검증 연구",
+        summary: "UX Writing 요소가 사용자 만족도에 미치는 영향 분석",
+        image: "images/ux-writing-framework.png",
+        period: "2024.08 ~ 2025.01"
+      }
+    };
+
+    /* ==============================
+      2) 스크롤 저장/복원
+    ============================== */
+    function rememberMainScroll() {
+      sessionStorage.setItem("mainScrollY", String(window.scrollY));
+      sessionStorage.setItem("returnToMain", "1");
+    }
+    function restoreScrollIfNeeded() {
+      const shouldRestore = sessionStorage.getItem("returnToMain") === "1";
+      const y = sessionStorage.getItem("mainScrollY");
+      if (shouldRestore && y) {
+        sessionStorage.removeItem("returnToMain");
+        window.scrollTo(0, parseInt(y, 10));
+      }
+    }
+
+    /* ==============================
+      3) 카드 클릭 바인딩
+    ============================== */
+    function bindCardClicks() {
+      document.querySelectorAll(".card.clickable[data-href]").forEach(card => {
+        if (card.dataset.bound === "1") return;
+        card.dataset.bound = "1";
+        card.style.cursor = "pointer";
+
+        card.addEventListener("click", (e) => {
+          const interactive = e.target.closest("a, button, input, textarea, select, label");
+          if (interactive) return;
+          const href = card.getAttribute("data-href");
+          if (!href) return;
+
+          rememberMainScroll();
+          window.location.href = href;
+        });
+      });
+    }
+    function bindLinkClicks() {
+      document.querySelectorAll(".project-link, .research-link").forEach(a => {
+        if (a.dataset.bound === "1") return;
+        a.dataset.bound = "1";
+        a.addEventListener("click", () => rememberMainScroll());
+      });
+    }
+
+    /* ==============================
+      4) Research 렌더 + 정렬
+    ============================== */
+    function formatDateKR(iso) {
+      if (!iso) return "";
+      const [y, m, d] = iso.split("-");
+      return `${y}. ${m}. ${d}`;
+    }
+
+    function getEndDate(period) {
+      if (!period) return -Infinity;
+
+      const parts = period.split("~");
+      if (parts.length < 2) return -Infinity;
+
+      const end = parts[1].trim(); // "2023.11"
+      const [year, month] = end.split(".");
+
+      return new Date(Number(year), Number(month) - 1).getTime();
+    }
+
+    function isInProgressText(statusOrSmallTitle = "") {
+      const s = String(statusOrSmallTitle).toUpperCase();
+      return s.includes("IN PROGRESS") || s.includes("ONGOING");
+    }
+
+    function renderProjectCards() {
+      const grid = document.getElementById("projectGrid");
+      if (!grid) return;
+
+      const items = Object.entries(PROJECTS).map(([id, data]) => ({ id, ...data }));
+
+      // ✅ 진행중 먼저 > 그 다음 종료일 최신순
+      items.sort((a, b) => {
+        const aProg = isInProgressText(a.status || a.smallTitle);
+        const bProg = isInProgressText(b.status || b.smallTitle);
+
+        if (aProg !== bProg) return aProg ? -1 : 1;
+
+        return getEndDate(b.period) - getEndDate(a.period);
+      });
+
+      grid.innerHTML = items.map(item => {
+        // 진행중이면 gray, 아니면 dark (research랑 톤 맞춤)
+        const badgeClass = isInProgressText(item.status || item.smallTitle) ? "gray" : "dark";
+        const dateText = item.period || "";
+
+        return `
+        <article class="card clickable" data-href="project.html?id=${item.id}">
+          ${item.image ? `
+            <div class="thumb" style="height:140px;">
+              <img src="${item.image}" alt="">
+            </div>
+          ` : ""}
+
+          <div class="card-body">
+            <span class="badge ${badgeClass}">${item.smallTitle || "Project"}</span>
+            ${dateText ? `<p style="margin-top:4px; color:var(--muted); font-size:12px;">${dateText}</p>` : ""}
+            <h3>${item.title || ""}</h3>
+            <p>${item.summary || ""}</p>
+          </div>
+
+          <div class="card-foot">
+            <a class="link project-link" href="project.html?id=${item.id}">View Details →</a>
+          </div>
+        </article>
+      `;
+      }).join("");
+
+      bindCardClicks();
+      bindLinkClicks();
+    }
+
+    function renderResearchCards() {
+      const grid = document.getElementById("researchGrid");
+      if (!grid) return;
+
+      const items = Object.entries(RESEARCH).map(([id, data]) => ({ id, ...data }));
+
+      // 최신 마감일이 위로
+      items.sort((a, b) => {
+        return getEndDate(b.period) - getEndDate(a.period);
+      });
+
+      grid.innerHTML = items.map(item => {
+        const badgeClass = item.smallTitle?.includes("PROGRESS") ? "gray" : "dark";
+        const dateText = item.period || "";
+
+        return `
+        <article class="card clickable" data-href="research.html?id=${item.id}">
+          ${item.image ? `
+            <div class="thumb" style="height:140px;">
+              <img src="${item.image}" alt="">
+            </div>
+          ` : ""}
+
+          <div class="card-body">
+            <span class="badge ${badgeClass}">${item.smallTitle || "Research"}</span>
+            ${dateText ? `<p style="margin-top:4px; color:var(--muted); font-size:12px;">${dateText}</p>` : ""}
+            <h3>${item.title}</h3>
+            <p>${item.summary || ""}</p>
+          </div>
+
+          <div class="card-foot">
+            <a class="link research-link" href="research.html?id=${item.id}">Read Paper →</a>
+          </div>
+        </article>
+      `;
+      }).join("");
+
+      // 렌더 후 다시 바인딩
+      bindCardClicks();
+      bindLinkClicks();
+    }
+
+    /* ==============================
+      5) 초기 실행
+    ============================== */
+    window.addEventListener("load", () => {
+      renderProjectCards();   // ✅ 추가
+      renderResearchCards();  // 기존
+      bindCardClicks();
+      bindLinkClicks();
+      restoreScrollIfNeeded();
+    });
+  </script>
+</body>
+
+</html>

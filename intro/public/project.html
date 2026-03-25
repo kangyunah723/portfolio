@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Detail</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard.css">
+
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111; --muted:#6b7280; --line:#e5e7eb;
+      --shadow: 0 18px 50px rgba(0,0,0,.08);
+      --radius-xl: 22px; --container: 920px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--container), calc(100% - 48px)); margin:0 auto; }
+
+    /* top bar */
+    .top{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(229,231,235,.7);
+    }
+    .top-inner{
+      height:72px;
+      display:flex; align-items:center; justify-content:flex-start;
+      gap:12px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      height:40px; padding:0 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      font-weight:800; font-size:13px;
+      cursor:pointer;
+    }
+    .back:hover{ transform: translateY(-1px); }
+    .title-wrap{
+      display:flex; flex-direction:column;
+      gap:2px;
+      margin-left: 6px;
+    }
+    .mini{ font-size:12px; color:var(--muted); }
+    .page-title{ margin:0; font-size:16px; letter-spacing:-.02em; }
+
+    /* content */
+    .hero{
+      padding: 34px 0 18px;
+    }
+    .cover{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(229,231,235,.7);
+      height: 320px;
+      background: #f3f4f6;
+    }
+    .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .content{
+      padding: 22px 0 72px;
+      display:grid;
+      gap:18px;
+    }
+    h1{ margin:0; font-size:32px; letter-spacing:-.03em; }
+    .desc{ margin:0; color:var(--muted); font-size:14px; max-width: 720px; }
+    .block{
+      border:1px solid rgba(229,231,235,.8);
+      border-radius: 16px;
+      padding: 18px;
+      background:#fff;
+    }
+    .block h3{ margin:0 0 8px; font-size:16px; }
+    .block ul{ margin:0; padding-left:18px; color:var(--muted); }
+
+    #images {
+      display: grid;
+      gap: 12px;
+    }
+
+    #images img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="container">
+      <div class="top-inner">
+        <button class="back" id="backBtn" type="button">← Back</button>
+        <div class="title-wrap">
+          <div class="mini">Participated Projects</div>
+          <p class="page-title" id="smallTitle">Project Detail</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="cover" id="cover"></div>
+    </section>
+
+    <section class="content">
+      <h1 id="title"></h1>
+      <p class="desc" id="summary"></p>
+
+    <div class="block">
+      <h3>프로젝트 목적</h3>
+      <ul id="purpose"></ul>
+    </div>
+
+    <div class="block">
+      <h3>수행 역할</h3>
+      <ul id="role"></ul>
+    </div>
+
+    <div class="block">
+      <h3>사용 역량 및 기술</h3>
+      <ul id="skills"></ul>
+    </div>
+
+    <div class="block">
+      <h3>핵심 성과</h3>
+      <ul id="outcome"></ul>
+    </div>
+
+    <div class="block">
+      <h3>관련 이미지</h3>
+      <div id="images"></div>
+    </div>
+    </section>
+  </main>
+
+  <script>
+    // ✅ 프로젝트 데이터(여기만 너 프로젝트에 맞게 채우면 됨)
+    const PROJECTS = {
+       airsolution: {
+        smallTitle: "에어솔루션 (LG전자)",
+        title: "체크리스트 통합 및 개선안 제작",
+        summary: "으응ㅁ. <br> 석사 연구원 4명, 학사 연구원 2명",
+        image: "images/airsolution_2023.jpg",
+
+        purpose: [
+          "제품 정보 표시 영역인 LCD 화면 설계 시 일관성을 확보할 수 있는 기준 수립",
+          "사용성과 감성뿐 아니라 사용자 관점에서 제품 Identity를 반영한 가이드라인 수립"
+        ],
+        role: [
+          "프로젝트 일정 및 진행 관리, 보고자료 제작 주관",
+          "UX 가이드라인 구조 설계",
+          "일관성 평가 체계 수립"
+        ],
+        skills: [
+          "문헌조사 (LG 내부 규정, 논문, 가이드라인) 및 경쟁자 가이드라인 분석을 통한 가이드라인 구조 설계",
+          "유관 부서(디자인, 개발 부서)와 회의를 주도하여 최종 가이드라인 항목 확정",
+          "신규 제품 평가를 통한 일관성 평가 체계 검증 리드"
+        ],
+        outcome: [
+        {
+          type: "text",
+          content: "제품 LCD UI/UX 일관성 설계 원칙 및 평가 체계 개발"
+        },
+        {
+          type: "text",
+          content: "일관성 관점의 LCD Identity 관련 문제점 진단을 통한 UX 평가 실효성 향상"
+        },
+        {
+          type: "image",
+          src: "images/LG Identity_process.png"
+        }
+        ]       
+      },
+
+      smartcity: {
+        smallTitle: "스마트시티 모빌리티 대시보드",
+        title: "스마트시티 모빌리티 대시보드",
+        summary: "도시 교통 흐름 데이터를 시각화하여 관리자들이 실시간으로 모니터링할 수 있는 관제 시스템 UI를 디자인했습니다.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=900&fit=crop",
+        role: ["대시보드 정보 구조 설계", "KPI/차트 컴포넌트 정의", "사용 시나리오 기반 화면 설계"],
+        process: ["요구사항 정리 → KPI 정의", "와이어프레임 → UI 설계", "피드백 반영 및 정리"],
+        outcome: ["관제 관점의 우선 정보/경보 구조 최적화", "필터/드릴다운 인터랙션 가이드 제시"]
+      },
+
+      financial: {
+        smallTitle: "비대면 금융 서비스 사용성 조사",
+        title: "비대면 금융 서비스 사용성 조사",
+        summary: "20~30대 금융 소비자의 비대면 서비스 이용 패턴을 분석하고 개선 과제를 도출했습니다.",
+        image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&h=900&fit=crop",
+        role: ["설문 설계 및 분석", "핵심 여정/페인포인트 도출", "개선안 제안서 작성"],
+        process: ["가설 수립 → 설문/인터뷰", "세그먼트 분석", "개선 과제 도출"],
+        outcome: ["불안/신뢰 요인과 UX 요소의 연결 정리", "온보딩/보안 고지/에러 대응 개선 제안"]
+      }
+    };
+
+    // ✅ URL에서 id 읽기
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id') || 'airsolution';
+    const data = PROJECTS[id] || PROJECTS.airsolution;
+
+    // ✅ 렌더
+    document.title = data.title + " | Project";
+    document.getElementById('smallTitle').textContent = data.smallTitle;
+    document.getElementById('title').textContent = data.title;
+    document.getElementById('summary').textContent = data.summary;
+
+    const cover = document.getElementById('cover');
+    cover.innerHTML = `<img src="${data.image}" alt="">`;
+
+    const fillList = (elId, arr) => {
+      const ul = document.getElementById(elId);
+      ul.innerHTML = arr.map(x => `<li>${x}</li>`).join('');
+    };
+
+    // 리스트
+    fillList('role', data.role);
+    fillList('skills', data.skills);
+    fillList('outcome', data.outcome);
+    fillList('purpose', data.purpose);
+    
+
+    // 이미지
+    const imagesWrap = document.getElementById('images');
+    imagesWrap.innerHTML = (data.images || [])
+      .map(src => `<img src="${src}" alt="">`)
+      .join('');
+
+    // ✅ 뒤로가기: 가장 좋은 건 history.back()
+    // - 같은 흐름으로 들어왔다면 브라우저가 원래 스크롤 위치까지 자동 복원하는 경우도 많음
+    // - 그래도 확실히 하려고 index에서 sessionStorage로 복원 로직을 이미 넣어둠
+    document.getElementById('backBtn').addEventListener('click', () => {
+      if (history.length > 1) history.back();
+      else location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

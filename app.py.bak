@@ -1,0 +1,39 @@
+import os
+from flask import Flask, send_from_directory, abort
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+INTRO_DIR = os.path.join(BASE_DIR, "intro")
+
+app = Flask(__name__)
+
+def serve_intro(filename):
+    full = os.path.join(INTRO_DIR, filename)
+    if not os.path.isfile(full):
+        abort(404, description=f"File not found: {full}")
+    return send_from_directory(INTRO_DIR, filename)
+
+@app.route("/ping")
+def ping():
+    return "pong"
+
+@app.route("/")
+def home():
+    return serve_intro("index.html")
+
+@app.route("/project")
+def project():
+    return serve_intro("project.html")
+
+@app.route("/research")
+def research():
+    return serve_intro("research.html")
+
+# intro 안의 css/js/img 같은 정적 파일 제공
+@app.route("/<path:filename>")
+def static_files(filename):
+    return serve_intro(filename)
+
+if __name__ == "__main__":
+    print("✅ running:", __file__)
+    print("✅ intro dir:", INTRO_DIR)
+    app.run(debug=True)

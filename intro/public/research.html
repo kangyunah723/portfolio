@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Detail</title>
+
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111; --muted:#6b7280; --line:#e5e7eb;
+      --shadow: 0 18px 50px rgba(0,0,0,.08);
+      --radius-xl: 22px; --container: 920px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", Arial, sans-serif;
+        }
+        
+    a{ color:inherit; text-decoration:none; }
+    .container{ width:min(var(--container), calc(100% - 48px)); margin:0 auto; }
+
+    /* top bar */
+    .top{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(229,231,235,.7);
+    }
+    .top-inner{
+      height:72px;
+      display:flex; align-items:center; justify-content:flex-start;
+      gap:12px;
+    }
+    .back{
+      display:inline-flex; align-items:center; gap:10px;
+      height:40px; padding:0 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      font-weight:800; font-size:13px;
+      cursor:pointer;
+    }
+    .back:hover{ transform: translateY(-1px); }
+    .title-wrap{
+      display:flex; flex-direction:column;
+      gap:2px;
+      margin-left: 6px;
+    }
+    .mini{ font-size:12px; color:var(--muted); }
+    .page-title{ margin:0; font-size:16px; letter-spacing:-.02em; }
+
+    /* content */
+    .hero{
+      padding: 34px 0 18px;
+    }
+    .cover{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(229,231,235,.7);
+      height: clamp(180px, 30vw, 260px);
+      background: #f3f4f6;
+    }
+    .cover img{ width:100%; height:100%; object-fit:cover; object-position: top; display:block; }
+    .content{
+      padding: 22px 0 72px;
+      display:grid;
+      gap:18px;
+    }
+    h1{ margin:0; font-size:32px; letter-spacing:-.03em; }
+    .desc{ margin:0; color:var(--muted); font-size:14px; max-width: 720px; }
+    .block{
+      border:1px solid rgba(229,231,235,.8);
+      border-radius: 16px;
+      padding: 18px;
+      background:#fff;
+    }
+    .block h3{ margin:0 0 6px; font-size:14px; }
+    .block ul{ margin:0; padding-left:25px; color:var(--muted); }
+
+    .block li {
+      margin-bottom: 5px;
+    }
+
+    #outcome li {
+    margin-bottom: 28px;
+  }
+
+    .block .sub {
+      margin: 6px 0 0 0;
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .sub {
+      border-left: 2px solid #e5e7eb;
+      padding-left: 12px;
+    }
+
+    #deadline{
+      font-size:12px;
+      margin-top:2px;
+      color:#9ca3af;
+    }
+
+    #journal{
+      font-size:12px;
+      color:#9ca3af;
+    }
+
+    .meta{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .outcome-img{
+      margin-top:10px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(0,0,0,.06);
+    }
+
+    .outcome-img img{
+      width:35%;
+      display:block;
+    }
+
+    .significance h3{
+      color:#2563eb; /* 세련된 블루 */
+    }
+
+    /* significance 우측에 라인 */
+    .significance{
+      border-left:4px solid #5b87e6;
+    }
+
+    /* significance 배경색 추가 */
+    .significance{
+      background:#f4f9ff;
+    }
+    /* ✅ 최종 정의(세로선 블록) */
+    #outcome .def{
+      margin: 10px 0 14px;
+      padding-left: 12px;
+      border-left: 3px solid #c5c8ce;  /* 파란 세로선 */
+      color: #111;                     /* 글자색은 기본(원하면 파란색도 가능) */
+      line-height: 1.6;
+    }
+
+    /* ✅ 아래 일반 설명(세로선 없음) */
+    #outcome .detail{
+      margin-top: 8px;
+      font-size: 14px;     /* 🔹 기존보다 작게 */
+      line-height: 1.7;
+      color: #444;         /* 살짝 톤 다운 (선택) */
+      padding-left: 20px;  /* 🔹 들여쓰기 */
+
+      .download{
+  margin-top:12px;
+}
+    /* 논문/자료 다운로드 버튼 스타일*/
+    .download a{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:10px;
+      border:1px solid #e5e7eb;
+      font-size:13px;
+      font-weight:600;
+      background:#fff;
+      transition:.2s;
+    }
+
+    .download a:hover{
+      transform:translateY(-1px);
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
+    }
+
+    /* Apple style download button */
+    .download{
+      margin-top:14px;
+    }
+
+    .download-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+
+      padding:10px 16px;
+      border-radius:999px;
+
+      font-size:13px;
+      font-weight:600;
+
+      color:#111;
+      background:#f5f5f7;
+
+      border:1px solid #e5e7eb;
+
+      transition:all .25s cubic-bezier(.4,0,.2,1);
+
+      backdrop-filter: blur(8px);
+    }
+
+    .download-btn svg{
+      width:14px;
+      height:14px;
+    }
+
+    .download-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
+      background:#ffffff;
+      border-color:#d1d5db;
+    }
+
+    .download-btn:active{
+      transform:translateY(0);
+      box-shadow:0 4px 10px rgba(0,0,0,.08);
+    }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="container">
+      <div class="top-inner">
+        <button class="back" id="backBtn" type="button">← Back</button>
+        <div class="title-wrap">
+          <div class="mini">Individual Research</div>
+          <p class="page-title" id="smallTitle">Project Detail</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="cover" id="cover"></div>
+    </section>
+
+    <section class="content">
+      <h1 id="title"></h1>
+      <p class="desc" id="summary"></p>
+      <div class="meta">
+        <p class="desc" id="deadline"></p>
+        <p class="desc" id="journal"></p>
+      </div>
+
+      <div class="block">
+        <h3>Research Goal</h3>
+        <ul id="goal"></ul>
+      </div>
+
+      <div class="block">
+        <h3>Role / Contribution</h3>
+        <ul id="role"></ul>
+      </div>
+
+      <div class="block">
+        <h3>Process</h3>
+        <ul id="process"></ul>
+      </div>
+
+      <div class="block">
+        <h3>Outcome</h3>
+        <ul id="outcome"></ul>
+      </div>
+
+      <div class="block significance">
+        <h3>Significance</h3>
+        <ul id="significance"></ul>
+      </div>
+    </section>
+  </main>
+
+ <script>
+  /* ==============================
+    1) 데이터 (period 사용)
+  ============================== */
+  const RESEARCH = {
+    recommendation: {
+      smallTitle: "CMF 디자인 개념 정의",
+      title: "CMF 디자인과 제품 경험 품질 개념 정의에 대한 체계적 문헌고찰",
+      summary: "CMF 디자인과 제품 경험 품질의 개념을 체계적으로 정의",
+      image: "images/CMF-Design-definition.png",
+      period: "2022.08 ~ 2023.02",
+      journal: "한국디자인학회 학술대회 논문집",
+
+      연구목표: [
+        "단순 감성 품질이 아닌 CMF 기반 제품 경험 품질 개념 구조화"
+      ],
+
+      role: [
+        "연구 설계 및 가설 수립",
+        "실험 인터페이스 설계",
+        "통계 분석 수행"
+      ],
+
+      process: [
+        "Literature Review",
+        "Affinity Diagram",
+        "framework 도출"
+      ],
+
+      outcome: [
+        {
+          title: "CMF 제품 경험 품질의 개념 정의",
+
+          // ✅ 위에 한 줄(세로선 안에 들어갈 문장)
+          definition: "<strong>특정 환경 내 '공간'에서의 대상 제품에 대해 느끼는 개인의 감성과 CMF 요소 간 결합으로 구성된다</strong>",
+
+          // ✅ 아래 일반 설명(세로선 없이)
+          detail: `
+            <strong>제품 경험 품질(Product experience quality):</strong> 소비자의 감성 자극을 목표로 하는 CMF 디자인 <br>
+            <strong>사용자 경험과 CMF(CMF with user experience):</strong> 단순 미적 만족을 넘어 소재와 표면처리를 통한 촉각 자극 및 부가가치 창출의 중요성 <br>
+            <strong>공간으로서의 CMF(CMF as space):</strong> 제품이 사용되는 특정 환경과 공간의 맥락에 따라 경험 품질이 변화한다는 점
+          `
+        },
+        {
+          title: "CMF 제품 경험 품질 Framework 제안",
+          detail: "환경(Environment), 실내 공간(Interior space), 제품(Product), 개인의 감성(Personal Affection), CMF 가치 요인(CMF Value Factors)의 상호작용",
+          image: "images/Design-product-experience.png",
+
+        }
+      ],
+
+      significance: [
+        "결론적으로 이 연구는 모호했던 <strong> CMF 디자인과 감성 품질의 관계</strong>를 '제품 경험 품질'이라는 관점에서 체계적으로 정의하고 <br> 향후 제품 개발 시 고려해야 할 구체적인 방향성을 제시함",
+        {pdf: "files/CMF-design-published.pdf"   // 🔥 추가
+        }
+      ]
+    },
+    
+
+    darkpattern: {
+      smallTitle: "Ongoing Research",
+      title: "다크 패턴이 모바일 커머스 구매 결정에 미치는 영향",
+      summary: "설득 UX와 다크 패턴의 행동 영향 비교 연구",
+      image: "",
+      period: "2024.01 ~ 2024.06",
+      journal: "투고 예정",
+
+      연구목표: [],
+
+      role: [
+        "실험 시나리오 설계",
+        "UX 패턴 분류 체계 구축"
+      ],
+
+      process: [
+        "패턴 유형 정의",
+        "A/B 실험 설계",
+        "행동 데이터 분석"
+      ],
+
+      outcome: [
+        "구매 전환과 신뢰 간 Trade-off 발견"
+      ],
+
+
+      significance: [
+        "CMF 디자인과 제품 경험 품질 간 관계를 구조적으로 정의",
+        "감성 중심 접근에서 경험 품질 프레임워크로 확장"
+      ]
+    },
+
+    newstudy: {   // 👈 새 id (이게 URL id가 됨)
+
+      smallTitle: "Conference Paper",
+      title: "UX Writing Framework 검증 연구",
+      summary: "UX Writing 요소가 사용자 만족도에 미치는 영향 분석",
+      image: "images/ux-writing-framework.png",
+      period: "2024.08 ~ 2025.01",
+      journal: " 졸업 논문",
+
+      연구목표: [
+        "UX Writing 요소 체계화",
+        "A/B Test 기반 효과 검증"
+      ],
+
+      role: [
+        "실험 설계",
+        "프로토타입 제작",
+        "통계 분석"
+      ],
+
+      process: [
+        "Framework 설계",
+        "실험 시나리오 제작",
+        "UT 및 설문 분석"
+      ],
+
+      outcome: [
+        {
+          title: "UX Writing Framework 제안",
+          definition: "<strong>명확성, 행동유도성, 감정적 연결의 3단계 구조 제안</strong>",
+          detail: `
+            UX Writing 요소를 인지-행동-감성 단계로 구조화하고
+            A/B Test를 통해 유의미한 차이를 검증
+          `
+        }
+      ],
+
+    significance: [
+      "UX Writing을 개념적 차원에서 실증적 구조로 확장",
+      {pdf: "files/CMF-design-published.pdf"   // 🔥 추가
+      }
+    ]
+  }
+  };
+
+
+  /* ==============================
+    2) URL에서 id 읽기
+  ============================== */
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id") || "recommendation";
+  const data = RESEARCH[id] || RESEARCH.recommendation;
+
+
+  /* ==============================
+    3) 기본 정보 렌더
+  ============================== */
+  document.title = data.title + " | Project";
+
+  document.getElementById("smallTitle").textContent = data.smallTitle || "";
+  document.getElementById("title").textContent = data.title || "";
+  document.getElementById("summary").textContent = data.summary || "";
+
+
+  /* ==============================
+    4) period 표시
+  ============================== */
+  if (data.period) {
+    document.getElementById("deadline").textContent =
+      `연구 기간 · ${data.period}`;
+  } else {
+    document.getElementById("deadline").style.display = "none";
+  }
+
+  if (data.journal) {
+    document.getElementById("journal").textContent =
+      `종류 · ${data.journal}`;
+  } else {
+    document.getElementById("journal").style.display = "none";
+  }
+
+  /* ==============================
+    5) 이미지 렌더
+  ============================== */
+  const cover = document.getElementById("cover");
+
+  if (data.image) {
+    cover.innerHTML = `<img src="${data.image}" alt="">`;
+  } else {
+    cover.style.display = "none";
+  }
+
+
+  /* ==============================
+    6) 리스트 렌더 함수 (안전 버전)
+  ============================== */
+  function fillList(elId, arr) {
+    const ul = document.getElementById(elId);
+
+    if (!ul || !Array.isArray(arr) || arr.length === 0) {
+      if (ul) ul.parentElement.style.display = "none";
+      return;
+    }
+
+    ul.innerHTML = arr.map(item => {
+      if (typeof item === "string") {
+        return `<li>${item}</li>`;
+      } else {
+          return `
+            <li>
+              <strong>${item.title || ""}</strong>
+
+              ${item.definition ? `<p class="def">${item.definition}</p>` : ""}
+
+              ${item.detail ? `<p class="detail">${item.detail}</p>` : ""}
+
+              ${item.image ? `
+                <div class="outcome-img">
+                  <img src="${item.image}" alt="">
+                </div>
+              ` : ""}
+
+              ${item.pdf ? `
+                <div class="download">
+                  <a href="${item.pdf}" download>📄 Paper Download</a>
+                </div>
+              ` : ""}
+
+            </li>
+          `;
+        }
+    }).join("");
+  }
+
+
+  /* ==============================
+    7) 각 블록 렌더
+  ============================== */
+  fillList("goal", data.연구목표);
+  fillList("role", data.role);
+  fillList("process", data.process);
+  fillList("outcome", data.outcome);
+  fillList("significance", data.significance);
+
+
+  /* ==============================
+    8) 뒤로가기
+  ============================== */
+  document.getElementById("backBtn").addEventListener("click", () => {
+    if (history.length > 1) {
+      history.back();
+    } else {
+      location.href = "index.html";
+    }
+  });
+</script>
+</body>
+</html>
